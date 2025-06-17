@@ -1,19 +1,55 @@
-<div class="min-h-screen bg-skin-base flex flex-col justify-center py-12 px-6 lg:px-8"
-     [ngClass]="themeService.lightTheme ? 'theme-light bg-image-light' : 'theme-dark bg-image-dark'">
+<div
+  class="min-h-screen bg-skin-base flex flex-col justify-center py-12 px-6 lg:px-8"
+  [ngClass]="
+    themeService.lightTheme
+      ? 'theme-light bg-image-light'
+      : 'theme-dark bg-image-dark'
+  "
+>
   <div class="sm:mx-auto sm:w-full sm:max-w-md">
     <div class="text-skin-base">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+      <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
            class="w-20 h-20 mx-auto h-16 w-auto">
         <path stroke-linecap="round" stroke-linejoin="round"
               d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"/>
+      </svg> -->
+      <svg
+        class="w-20 h-22 mx-auto"
+        viewBox="-64 -64 928.00 928.00"
+        enable-background="new 0 0 800 800"
+        id="GUIDE"
+
+        fill="#daa64e"
+        stroke="#daa64e"
+        stroke-width="0.008"
+      >
+       
+        <g id="SVGRepo_iconCarrier">
+          <g>
+            <path
+              d="M205.192,564.16c2.663,1.196,5.447,1.763,8.188,1.763c7.632,0,14.921-4.393,18.253-11.805 c0.855-1.902,1.735-3.826,2.641-5.77c4.664-10.013,0.327-21.91-9.686-26.574s-21.91-0.327-26.574,9.686 c-0.981,2.107-1.937,4.194-2.864,6.258C190.622,547.793,195.118,559.631,205.192,564.16z"
+            ></path>
+            <path
+              d="M704.048,28.185c-5.118-4.382-12.1-5.894-18.571-4.018C594.619,50.485,497.521,137.613,432.063,206.07 c-77.966,81.538-154.592,182.462-204.975,269.973c-5.511,9.572-2.219,21.8,7.354,27.312c3.145,1.81,6.575,2.671,9.96,2.671 c6.92-0.001,13.651-3.597,17.351-10.024c48.872-84.887,123.347-182.938,199.22-262.287 c74.563-77.979,146.197-133.582,205.449-159.937c-5.986,36.703-13.843,70.702-23.787,102.998l-80.579,28.637 c-8.062,2.864-13.408,10.54-13.302,19.095c0.107,8.555,5.645,16.095,13.775,18.757l48.154,15.769 c-6.942,14.376-14.396,28.076-22.289,40.969l-97.724-9.853c-8.444-0.852-16.512,3.724-20.114,11.411 c-3.604,7.688-1.961,16.812,4.097,22.76l52.718,51.757c-13.877,13.073-28.697,24.726-44.291,34.821l-47.553-36.924 c-6.031-4.683-14.203-5.524-21.061-2.166c-6.858,3.357-11.206,10.327-11.206,17.963v57.602 c-26.932,7.94-55.942,12.699-86.447,14.167c-11.032,0.53-19.546,9.905-19.016,20.938c0.532,11.032,9.917,19.548,20.938,19.015 c39.447-1.898,76.803-8.829,111.029-20.6c8.074-2.777,13.495-10.374,13.495-18.913v-31.358l26.233,20.369 c6.455,5.013,15.312,5.593,22.365,1.466c28.543-16.701,54.945-37.83,78.475-62.802c7.466-7.923,7.224-20.361-0.544-27.987 l-26.493-26.01l53.387,5.382c7.428,0.751,14.669-2.709,18.754-8.968c15.234-23.34,29.061-49.298,41.094-77.151 c2.23-5.16,2.185-11.021-0.125-16.146c-2.309-5.125-6.668-9.043-12.01-10.792l-13.739-4.499l34.749-12.349 c5.858-2.082,10.416-6.771,12.33-12.686c15.158-46.821,25.998-96.715,33.143-152.532C711.734,39.232,709.167,32.567,704.048,28.185 z"
+            ></path>
+            <path
+              d="M294.173,636.07l-3.816-2.082c-5.363-2.925-9.89-10.825-9.89-14.236v-11.064c20.625-13.142,33.332-31.909,33.332-53.064 c0-11.046-8.954-20-20-20s-20,8.954-20,20c0,15.04-29.208,32.523-66.865,32.523c-37.656,0-66.863-17.483-66.863-32.523 c0-8.861,10.265-18.735,26.151-25.154c10.241-4.139,15.188-15.796,11.05-26.037c-4.138-10.24-15.794-15.189-26.037-11.05 c-32.038,12.945-51.165,36.214-51.165,62.241c0,21.155,12.707,39.923,33.331,53.064v11.064c0,3.411-4.526,11.312-9.886,14.236 l-3.821,2.082c-17.522,9.559-30.735,31.816-30.735,51.775v45.64c0,23.786,19.352,43.138,43.139,43.138h149.674 c23.786,0,43.138-19.352,43.138-43.138v-45.64C324.909,667.887,311.696,645.629,294.173,636.07z M284.909,733.485 c0,1.671-1.467,3.138-3.138,3.138H132.098c-1.672,0-3.139-1.467-3.139-3.138v-45.64c0-5.369,5.176-14.088,9.887-16.658l3.821-2.083 c16.022-8.74,28.435-27.229,30.442-44.535c10.59,2.322,21.95,3.577,33.824,3.577c11.874,0,23.234-1.255,33.825-3.577 c2.007,17.306,14.42,35.796,30.444,44.536l3.817,2.082c4.714,2.57,9.89,11.289,9.89,16.658V733.485z"
+            ></path>
+          </g>
+        </g>
       </svg>
     </div>
-    <h2 class="mt-6 text-center text-3xl font-extrabold text-skin-muted">Sign in to Syllabus</h2>
+    <h2 class="mt-6 text-center text-3xl font-extrabold text-skin-muted">
+      Sign in to Syllabus
+    </h2>
     <p class="mt-2 text-center text-sm text-skin-muted max-w">
       Don't have an account?
-      <a routerLink="/register"
-         class="font-medium text-sky-800 hover:text-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500">
-        Sign up with code</a>
+      <a
+        routerLink="/register"
+        class="font-medium text-sky-800 hover:text-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500"
+      >
+        Sign up with code</a
+      >
     </p>
   </div>
 
@@ -21,32 +57,64 @@
     <div class="bg-skin-fill py-8 px-6 shadow-2xl rounded-lg sm:px-10">
       <form class="mb-0 space-y-6">
         <div>
-          <label for="email" class="block text-sm font-medium text-skin-base">Email address</label>
+          <label for="email" class="block text-sm font-medium text-skin-base"
+            >Email address</label
+          >
           <div class="mt-1">
-            <input [(ngModel)]="email" id="email" name="email" type="email" autocomplete="email" required
-                   class="w-full bg-skin-muted text-skin-base"/>
+            <input
+              [(ngModel)]="email"
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+              class="w-full bg-skin-muted text-skin-base"
+            />
           </div>
         </div>
 
         <div>
-          <label for="password" class="block text-sm font-medium text-skin-base">Password</label>
+          <label for="password" class="block text-sm font-medium text-skin-base"
+            >Password</label
+          >
           <div class="mt-1">
-            <input [(ngModel)]="password" id="password" name="password" type="password" autocomplete="current-password"
-                   required class="w-full bg-skin-muted text-skin-base"/>
+            <input
+              [(ngModel)]="password"
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              required
+              class="w-full bg-skin-muted text-skin-base"
+            />
           </div>
         </div>
         <div>
-          <button *ngIf="!loading" (click)="login()" type="submit" class="w-full btn-submit focus:ring-0">Sign in
+          <button
+            *ngIf="!loading"
+            (click)="login()"
+            type="submit"
+            class="w-full btn-submit focus:ring-0"
+          >
+            Sign in
           </button>
-          <button *ngIf="loading" type="submit" class="w-full btn-submit hover:none flex justify-center" disabled>
+          <button
+            *ngIf="loading"
+            type="submit"
+            class="w-full btn-submit hover:none flex justify-center"
+            disabled
+          >
             <svg class="h-5 w-5 animate-spin" viewBox="3 3 18 18">
-              <path class="fill-gray-900"
-                    d="M12 5C8.13401 5 5 8.13401 5 12c0 3.866 3.13401 7 7 7 3.866.0 7-3.134 7-7 0-3.86599-3.134-7-7-7zM3 12c0-4.97056 4.02944-9 9-9 4.9706.0 9 4.02944 9 9 0 4.9706-4.0294 9-9 9-4.97056.0-9-4.0294-9-9z"></path>
-              <path class="fill-gray-50"
-                    d="M16.9497 7.05015c-2.7336-2.73367-7.16578-2.73367-9.89945.0-.39052.39052-1.02369.39052-1.41421.0-.39053-.39053-.39053-1.02369.0-1.41422 3.51472-3.51472 9.21316-3.51472 12.72796.0C18.7545 6.02646 18.7545 6.65962 18.364 7.05015c-.390599999999999.39052-1.0237.39052-1.4143.0z"></path>
+              <path
+                class="fill-gray-900"
+                d="M12 5C8.13401 5 5 8.13401 5 12c0 3.866 3.13401 7 7 7 3.866.0 7-3.134 7-7 0-3.86599-3.134-7-7-7zM3 12c0-4.97056 4.02944-9 9-9 4.9706.0 9 4.02944 9 9 0 4.9706-4.0294 9-9 9-4.97056.0-9-4.0294-9-9z"
+              ></path>
+              <path
+                class="fill-gray-50"
+                d="M16.9497 7.05015c-2.7336-2.73367-7.16578-2.73367-9.89945.0-.39052.39052-1.02369.39052-1.41421.0-.39053-.39053-.39053-1.02369.0-1.41422 3.51472-3.51472 9.21316-3.51472 12.72796.0C18.7545 6.02646 18.7545 6.65962 18.364 7.05015c-.390599999999999.39052-1.0237.39052-1.4143.0z"
+              ></path>
             </svg>
           </button>
-
         </div>
       </form>
     </div>
@@ -54,11 +122,21 @@
       <p class="font-bold">All accounts are secured by password "P@ssw0rd".</p>
       <p>Example users (click to login):</p>
       <div class="flex justify-between font-bold">
-        <span (click)="loginAs('student')" class="p-1 m-1 cursor-pointer">student</span>
-        <span (click)="loginAs('teacher')" class="p-1 m-1 cursor-pointer">teacher</span>
-        <span (click)="loginAs('office')" class="p-1 m-1 cursor-pointer">office</span>
-        <span (click)="loginAs('director')" class="p-1 m-1 cursor-pointer">director</span>
-        <span (click)="loginAs('admin')" class="p-1 m-1 cursor-pointer">admin</span>
+        <span (click)="loginAs('student')" class="p-1 m-1 cursor-pointer"
+          >student</span
+        >
+        <span (click)="loginAs('teacher')" class="p-1 m-1 cursor-pointer"
+          >teacher</span
+        >
+        <span (click)="loginAs('office')" class="p-1 m-1 cursor-pointer"
+          >office</span
+        >
+        <span (click)="loginAs('director')" class="p-1 m-1 cursor-pointer"
+          >director</span
+        >
+        <span (click)="loginAs('admin')" class="p-1 m-1 cursor-pointer"
+          >admin</span
+        >
       </div>
     </div>
   </div>

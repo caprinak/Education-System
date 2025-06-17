@@ -155,7 +155,8 @@ export class CourseComponent implements OnInit {
     if (!this.postPage?.last) {
       this.postPageLoading = true
       this.postPageNumber++
-      this.postService.getCoursePosts(this.courseId, this.postPageNumber).subscribe((result) => {
+       this.postsSubscription?.unsubscribe();
+      this.postsSubscription = this.postService.getCoursePosts(this.courseId, this.postPageNumber).subscribe((result) => {
         this.postPage = result
         this.postPageLoading = false
       })

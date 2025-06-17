@@ -10,7 +10,7 @@ import pl.rstrzalkowski.syllabus.domain.model.Realisation;
 @AllArgsConstructor
 public class SubjectDTO {
 
-    private Long realisationId;
+    private Long courseId;
 
     private String subjectName;
 
@@ -21,7 +21,7 @@ public class SubjectDTO {
     private String schoolClassName;
 
     public SubjectDTO(Realisation realisation) {
-        this.realisationId = realisation.getId();
+        this.courseId = realisation.getId();
         this.subjectName = realisation.getSubject().getName();
         this.subjectAbbreviation = realisation.getSubject().getAbbreviation();
         this.schoolClassName = realisation.getSchoolClass().getSchoolClassName();

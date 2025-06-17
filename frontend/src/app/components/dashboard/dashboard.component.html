@@ -117,7 +117,7 @@
       </div>
     </div>
     <div>
-      <div class="grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid w-full gap-5">
+      <div *ngIf="authService.getRole() == 'TEACHER'" class="grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid w-full gap-5">
         <div *ngFor="let subject of subjects">
           <div class="rounded-lg">
             <div>
@@ -130,7 +130,7 @@
                 <div
                   class="absolute z-10 bg-black text-white rounded-lg p-2 bg-opacity-50">
                   {{subject.subjectAbbreviation}}<span
-                  *ngIf="authService.getRole() == 'TEACHER'"> {{subject.schoolClassName}}</span>
+                  > {{subject.schoolClassName}}</span>
                 </div>
               </div>
             </div>
@@ -183,7 +183,7 @@
         <div routerLink="/subjects"
              class="text-white bg-skin-base rounded-lg h-60 flex items-center justify-center text-4xl transition-opacity duration-150 hover:opacity-80 hover:shadow-2xl hover:-m-1 hover:underline underline-offset-4 cursor-pointer bg-cover bg-center">
           <img
-            src="https://media.istockphoto.com/id/1335708681/photo/stacks-of-books-for-teaching-knowledge-college-library-green-background.jpg?b=1&s=170667a&w=0&k=20&c=_-kpFpVyUWgiCafriJgZ6Wr_kLQ2kt19SSCZvlWK63Y="
+            src="https://sp-ao.shortpixel.ai/client/to_auto,q_glossy,ret_img,w_358,h_256/https://cace.org/wp-content/uploads/2020/02/10311103-education-and-back-to-school-concept-stack-of-textbooks-desktop-globe-calculator-and-other-school-co-470x336.jpg"
             class="h-full w-full object-cover overflow-hidden rounded-lg"
             alt="image">
           <div
