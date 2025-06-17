@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {RealisationService} from "../../services/realisation.service";
+import {CourseService} from "../../services/course.service";
 import {GradeService} from "../../services/grade.service";
-import {RealisationInfo} from "../../model/realisation.info";
+import {CourseInfo} from "../../model/course.info";
 import {GradePage} from "../../model/grade";
 
 @Component({
@@ -11,10 +11,10 @@ import {GradePage} from "../../model/grade";
 })
 export class GradesComponent implements OnInit {
 
-  public realisationId: number | undefined;
+  public courseId: number | undefined;
 
   //Data from API
-  realisationInfo: RealisationInfo | undefined
+  courseInfo: CourseInfo | undefined
   grades: GradePage | undefined
   //end data
 
@@ -26,19 +26,19 @@ export class GradesComponent implements OnInit {
 
   //Loading indicators
   gradesLoading = false
-  realisationLoading = false;
+  courseLoading = false;
   //end loading
 
 
   //Subscriptions
-  realisationSubscription: any;
+  courseSubscription: any;
   gradesSubscription: any;
 
   //end subscriptions
 
 
   constructor(private activatedRoute: ActivatedRoute,
-              private realisationService: RealisationService,
+              private courseService: CourseService,
               private gradeService: GradeService,
               private router: Router) {
   }
@@ -46,54 +46,54 @@ export class GradesComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((params) => {
       this.clearSubscriptions()
-      let realisationIdString = params.get('id')!.toString()
+      let courseIdString = params.get('id')!.toString()
 
-      this.realisationId = Number(realisationIdString)
+      this.courseId = Number(courseIdString)
 
-      this.getRealisationInfo(this.realisationId)
-      this.getGrades(this.realisationId)
+      this.getCourseInfo(this.courseId)
+      this.getGrades(this.courseId)
     })
   }
 
   clearSubscriptions() {
-    this.realisationSubscription?.unsubscribe()
+    this.courseSubscription?.unsubscribe()
     this.gradesSubscription?.unsubscribe()
   }
 
-  getRealisationInfo(realisationId: number) {
-    this.realisationLoading = true
-    this.realisationSubscription = this.realisationService.getRealisationInfo(realisationId).subscribe((result) => {
-      this.realisationInfo = result
-      this.realisationLoading = false
+  getCourseInfo(courseId: number) {
+    this.courseLoading = true
+    this.courseSubscription = this.courseService.getCourseInfo(courseId).subscribe((result) => {
+      this.courseInfo = result
+      this.courseLoading = false
     }, error => {
       this.router.navigate(['/forbidden'])
     })
   }
 
 
-  getGrades(realisationId: number) {
+  getGrades(courseId: number) {
     this.gradesLoading = true
-    this.gradesSubscription = this.gradeService.getGradesOfRealisation(realisationId, this.pageNumber).subscribe((result) => {
+    this.gradesSubscription = this.gradeService.getGradesOfCourse(courseId, this.pageNumber).subscribe((result) => {
       this.grades = result
       this.gradesLoading = false
     })
   }
 
   isLoading() {
-    return this.realisationLoading || this.gradesLoading
+    return this.courseLoading || this.gradesLoading
   }
 
   nextPage() {
     if (!this.grades?.last) {
       this.pageNumber++
-      this.getGrades(this.realisationId!)
+      this.getGrades(this.courseId!)
     }
   }
 
   previousPage() {
     if (this.pageNumber > 0) {
       this.pageNumber--
-      this.getGrades(this.realisationId!)
+      this.getGrades(this.courseId!)
     }
   }
 }

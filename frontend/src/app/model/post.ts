@@ -7,7 +7,7 @@ export interface PostPage {
 
 export interface Post {
   postId: number;
-  realisationId: number;
+  courseId: number;
   authorId: number;
   title: string;
   content: string;

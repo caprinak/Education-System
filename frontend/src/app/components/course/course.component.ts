@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {RealisationService} from "../../services/realisation.service";
+import {CourseService} from "../../services/course.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {RealisationInfo} from "../../model/realisation.info";
+import {CourseInfo} from "../../model/course.info";
 import {GradeService} from "../../services/grade.service";
 import {PostService} from "../../services/post.service";
 import {ActivityService} from "../../services/activity.service";
@@ -12,15 +12,15 @@ import {Title} from "@angular/platform-browser";
 import {ThemeService} from "../../services/theme.service";
 
 @Component({
-  selector: 'app-realisation',
-  templateUrl: './realisation.component.html'
+  selector: 'app-course',
+  templateUrl: './course.component.html'
 })
-export class RealisationComponent implements OnInit {
+export class CourseComponent implements OnInit {
 
-  realisationId: number | undefined
+  courseId: number | undefined
 
   //Data from API
-  realisationInfo: RealisationInfo | undefined
+  courseInfo: CourseInfo | undefined
   grade: number | undefined;
   postPage: PostPage | undefined;
   activityPage: ActivityPage | undefined;
@@ -32,7 +32,7 @@ export class RealisationComponent implements OnInit {
   //end page numbers
 
   //Loading indicators
-  realisationLoading = false
+  courseLoading = false
   postsLoading = false
   postPageLoading = false
   activitiesLoading = false
@@ -41,7 +41,7 @@ export class RealisationComponent implements OnInit {
   //end loading
 
   //Subscriptions
-  realisationSubscription: any
+  courseSubscription: any
   gradeSubscription: any
   postsSubscription: any
   activitiesSubscription: any
@@ -54,7 +54,7 @@ export class RealisationComponent implements OnInit {
 
   //end modals
 
-  constructor(private realisationService: RealisationService,
+  constructor(private courseService: CourseService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
               private gradeService: GradeService,
@@ -68,25 +68,25 @@ export class RealisationComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((params) => {
       this.clearSubscriptions()
-      let realisationIdString = params.get('id')!.toString();
+      let courseIdString = params.get('id')!.toString();
 
-      this.realisationId = Number(realisationIdString)
+      this.courseId = Number(courseIdString)
 
       if (this.authService.getRole() === 'STUDENT') {
         this.getAverageGrade();
       }
       this.getPosts();
       this.getActivities();
-      this.getRealisationInfo(this.realisationId);
+      this.getCourseInfo(this.courseId);
     })
   }
 
   isLoading() {
-    return this.realisationLoading || this.postsLoading || this.gradeLoading || this.activitiesLoading
+    return this.courseLoading || this.postsLoading || this.gradeLoading || this.activitiesLoading
   }
 
   clearSubscriptions() {
-    this.realisationSubscription?.unsubscribe()
+    this.courseSubscription?.unsubscribe()
     this.postsSubscription?.unsubscribe()
     this.gradeSubscription?.unsubscribe()
     this.activitiesSubscription?.unsubscribe()
@@ -94,7 +94,7 @@ export class RealisationComponent implements OnInit {
 
   getAverageGrade() {
     this.gradeLoading = true
-    this.gradeSubscription = this.gradeService.getAverageGrade(this.realisationId).subscribe((result) => {
+    this.gradeSubscription = this.gradeService.getAverageGrade(this.courseId).subscribe((result) => {
       this.grade = result.average
       this.gradeLoading = false
     })
@@ -102,7 +102,7 @@ export class RealisationComponent implements OnInit {
 
   getPosts() {
     this.postsLoading = true
-    this.postsSubscription = this.postService.getRealisationPosts(this.realisationId, this.postPageNumber).subscribe((result) => {
+    this.postsSubscription = this.postService.getCoursePosts(this.courseId, this.postPageNumber).subscribe((result) => {
       this.postPage = result
       this.postsLoading = false
     })
@@ -110,21 +110,21 @@ export class RealisationComponent implements OnInit {
 
   getActivities() {
     this.activitiesLoading = true
-    this.postsSubscription = this.activityService.getIncomingActivitiesByRealisation(this.realisationId, this.activityPageNumber).subscribe((result) => {
+    this.postsSubscription = this.activityService.getIncomingActivitiesByCourse(this.courseId, this.activityPageNumber).subscribe((result) => {
       this.activityPage = result
       this.activitiesLoading = false
     })
   }
 
-  getRealisationInfo(realisationId: number) {
-    this.realisationLoading = true
-    this.realisationSubscription = this.realisationService.getRealisationInfo(realisationId).subscribe((result) => {
-      this.realisationInfo = result
-      this.realisationLoading = false
+  getCourseInfo(courseId: number) {
+    this.courseLoading = true
+    this.courseSubscription = this.courseService.getCourseInfo(courseId).subscribe((result) => {
+      this.courseInfo = result
+      this.courseLoading = false
       if (this.authService.getRole() === 'STUDENT') {
-        this.titleService.setTitle(this.realisationInfo.subjectName + ' - Syllabus');
+        this.titleService.setTitle(this.courseInfo.subjectName + ' - Syllabus');
       } else {
-        this.titleService.setTitle(this.realisationInfo.schoolClassName + " " + this.realisationInfo.subjectAbbreviation + ' - Syllabus');
+        this.titleService.setTitle(this.courseInfo.schoolClassName + " " + this.courseInfo.subjectAbbreviation + ' - Syllabus');
       }
     }, error => {
       this.router.navigate(['/forbidden'])
@@ -134,7 +134,7 @@ export class RealisationComponent implements OnInit {
   refreshPosts() {
     this.postPageNumber = 0
     this.postPageLoading = true
-    this.postService.getRealisationPosts(this.realisationId, this.postPageNumber).subscribe((result) => {
+    this.postService.getCoursePosts(this.courseId, this.postPageNumber).subscribe((result) => {
       this.postPage = result
       this.postPageLoading = false
       this.createPostOpened = false
@@ -144,7 +144,7 @@ export class RealisationComponent implements OnInit {
   refreshActivities() {
     this.activityPageNumber = 0
     this.activityPageLoading = true
-    this.activityService.getIncomingActivitiesByRealisation(this.realisationId, this.postPageNumber).subscribe((result) => {
+    this.activityService.getIncomingActivitiesByCourse(this.courseId, this.postPageNumber).subscribe((result) => {
       this.activityPage = result
       this.activityPageLoading = false
       this.createActivityOpened = false
@@ -155,7 +155,7 @@ export class RealisationComponent implements OnInit {
     if (!this.postPage?.last) {
       this.postPageLoading = true
       this.postPageNumber++
-      this.postService.getRealisationPosts(this.realisationId, this.postPageNumber).subscribe((result) => {
+      this.postService.getCoursePosts(this.courseId, this.postPageNumber).subscribe((result) => {
         this.postPage = result
         this.postPageLoading = false
       })
@@ -166,7 +166,7 @@ export class RealisationComponent implements OnInit {
     if (this.postPageNumber > 0) {
       this.postPageLoading = true
       this.postPageNumber--
-      this.postService.getRealisationPosts(this.realisationId, this.postPageNumber).subscribe((result) => {
+      this.postService.getCoursePosts(this.courseId, this.postPageNumber).subscribe((result) => {
         this.postPage = result
         this.postPageLoading = false
       })
@@ -177,7 +177,7 @@ export class RealisationComponent implements OnInit {
     if (!this.activityPage?.last) {
       this.activityPageLoading = true
       this.activityPageNumber++
-      this.activityService.getIncomingActivitiesByRealisation(this.realisationId, this.activityPageNumber).subscribe((result) => {
+      this.activityService.getIncomingActivitiesByCourse(this.courseId, this.activityPageNumber).subscribe((result) => {
         this.activityPage = result
         this.activityPageLoading = false
       })
@@ -188,7 +188,7 @@ export class RealisationComponent implements OnInit {
     if (this.activityPageNumber > 0) {
       this.activityPageLoading = true
       this.activityPageNumber--
-      this.activityService.getIncomingActivitiesByRealisation(this.realisationId, this.activityPageNumber).subscribe((result) => {
+      this.activityService.getIncomingActivitiesByCourse(this.courseId, this.activityPageNumber).subscribe((result) => {
         this.activityPage = result
         this.activityPageLoading = false
       })

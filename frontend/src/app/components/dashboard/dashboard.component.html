@@ -37,7 +37,7 @@
                   <span>Weight: {{activity.weight}}</span>
                   <span class="font-bold">{{activity.date | date:"mediumDate"}}</span>
                   <span>{{activity.subjectName}}</span>
-                  <p class="mt-5"><span routerLink="/realisation/{{activity.realisationId}}"
+                  <p class="mt-5"><span routerLink="/course/{{activity.courseId}}"
                                         class="cursor-pointer font-bold text-sky-800">View</span>
                 </div>
               </div>
@@ -70,7 +70,7 @@
                   <span>Weight: {{grade.activityDTO.weight}}</span>
                   <span>{{grade.createdAt | date:"short"}}</span>
                   <span>{{grade.activityDTO.subjectName}}</span>
-                  <p class="mt-5"><span routerLink="/realisation/{{grade.realisationId}}/grades"
+                  <p class="mt-5"><span routerLink="/course/{{grade.courseId}}/grades"
                                         class="cursor-pointer font-bold text-sky-800">View</span>
                 </div>
               </div>
@@ -98,7 +98,7 @@
                   <span>{{post.createdAt | date:"short"}}</span>
                   <span class="my-2"></span>
                   <span class="text-justify">{{post.content}}</span>
-                  <p class="mt-5"><span routerLink="/realisation/{{post.realisationId}}"
+                  <p class="mt-5"><span routerLink="/course/{{post.courseId}}"
                                         class="cursor-pointer font-bold text-sky-800">View</span>
                 </div>
               </div>
@@ -121,7 +121,7 @@
         <div *ngFor="let subject of subjects">
           <div class="rounded-lg">
             <div>
-              <div routerLink="/realisation/{{subject.realisationId}}"
+              <div routerLink="/course/{{subject.courseId}}"
                    [ngClass]="subject.imageUrl? 'brightness-75': ''"
                    class="text-white bg-skin-base rounded-lg h-60 flex items-center justify-center text-4xl transition-opacity duration-150 hover:opacity-80 hover:shadow-2xl hover:-m-1 hover:underline underline-offset-4 cursor-pointer bg-cover bg-center">
                 <img *ngIf="subject.imageUrl" [src]="subject.imageUrl"
@@ -197,7 +197,7 @@
   <div>
     <div class="rounded-lg">
       <div>
-        <div routerLink="/realisations"
+        <div routerLink="/courses"
              class="text-white bg-skin-base rounded-lg h-60 flex items-center justify-center text-4xl transition-opacity duration-150 hover:opacity-80 hover:shadow-2xl hover:-m-1 hover:underline underline-offset-4 cursor-pointer bg-cover bg-center">
           <img
             src="https://xello.world/wp-content/uploads/reignite-student-engagement-1024x760.jpg"
@@ -205,7 +205,7 @@
             alt="image">
           <div
             class="absolute z-10 bg-black text-white rounded-lg p-2 bg-opacity-50">
-            <span>Realisations</span>
+            <span>Courses</span>
           </div>
         </div>
       </div>

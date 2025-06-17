@@ -1,7 +1,7 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {RealisationInfo} from "../../model/realisation.info";
+import {CourseInfo} from "../../model/course.info";
 import {ActivatedRoute, Router} from "@angular/router";
-import {RealisationService} from "../../services/realisation.service";
+import {CourseService} from "../../services/course.service";
 import {ActivityService} from "../../services/activity.service";
 import {Activity, ActivityPage} from "../../model/activity";
 import {AlertService} from "../../services/alert.service";
@@ -13,10 +13,10 @@ import {BehaviorSubject} from "rxjs";
 })
 export class ActivitiesComponent implements OnInit {
 
-  public realisationId: number | undefined;
+  public courseId: number | undefined;
 
   //Data from API
-  realisationInfo: RealisationInfo | undefined
+  courseInfo: CourseInfo | undefined
   activities: ActivityPage | undefined
   //end data
 
@@ -28,12 +28,12 @@ export class ActivitiesComponent implements OnInit {
 
   //Loading indicators
   activitiesLoading = false
-  realisationLoading = false;
+  courseLoading = false;
   //end loading
 
 
   //Subscriptions
-  realisationSubscription: any;
+  courseSubscription: any;
   activitiesSubscription: any;
 
   //end subscriptions
@@ -60,7 +60,7 @@ export class ActivitiesComponent implements OnInit {
 
 
   constructor(private activatedRoute: ActivatedRoute,
-              private realisationService: RealisationService,
+              private courseService: CourseService,
               private activityService: ActivityService,
               private alertService: AlertService,
               private router: Router) {
@@ -69,12 +69,12 @@ export class ActivitiesComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((params) => {
       this.clearSubscriptions()
-      let realisationIdString = params.get('id')!.toString()
+      let courseIdString = params.get('id')!.toString()
 
-      this.realisationId = Number(realisationIdString)
+      this.courseId = Number(courseIdString)
 
-      this.getRealisationInfo(this.realisationId)
-      this.getActivities(this.realisationId)
+      this.getCourseInfo(this.courseId)
+      this.getActivities(this.courseId)
     })
   }
 
@@ -86,24 +86,24 @@ export class ActivitiesComponent implements OnInit {
   }
 
   clearSubscriptions() {
-    this.realisationSubscription?.unsubscribe()
+    this.courseSubscription?.unsubscribe()
     this.activitiesSubscription?.unsubscribe()
   }
 
-  getRealisationInfo(realisationId: number) {
-    this.realisationLoading = true
-    this.realisationSubscription = this.realisationService.getRealisationInfo(realisationId).subscribe((result) => {
-      this.realisationInfo = result
-      this.realisationLoading = false
+  getCourseInfo(courseId: number) {
+    this.courseLoading = true
+    this.courseSubscription = this.courseService.getCourseInfo(courseId).subscribe((result) => {
+      this.courseInfo = result
+      this.courseLoading = false
     }, error => {
       this.router.navigate(['/forbidden'])
     })
   }
 
 
-  getActivities(realisationId: number) {
+  getActivities(courseId: number) {
     this.activitiesLoading = true
-    this.activitiesSubscription = this.activityService.getRealisationActivities(realisationId, this.pageNumber).subscribe((result) => {
+    this.activitiesSubscription = this.activityService.getCourseActivities(courseId, this.pageNumber).subscribe((result) => {
       this.activities = result
       this.activitiesLoading = false
     })
@@ -112,7 +112,7 @@ export class ActivitiesComponent implements OnInit {
   refreshActivities() {
     this.pageNumber = 0
     this.activitiesLoading = true
-    this.activitiesSubscription = this.activityService.getRealisationActivities(this.realisationId, this.pageNumber).subscribe((result) => {
+    this.activitiesSubscription = this.activityService.getCourseActivities(this.courseId, this.pageNumber).subscribe((result) => {
       this.activities = result
       this.chosenActivity = undefined
       this.activitiesLoading = false
@@ -121,20 +121,20 @@ export class ActivitiesComponent implements OnInit {
   }
 
   isLoading() {
-    return this.realisationLoading || this.activitiesLoading
+    return this.courseLoading || this.activitiesLoading
   }
 
   nextPage() {
     if (!this.activities?.last) {
       this.pageNumber++
-      this.getActivities(this.realisationId!)
+      this.getActivities(this.courseId!)
     }
   }
 
   previousPage() {
     if (this.pageNumber > 0) {
       this.pageNumber--
-      this.getActivities(this.realisationId!)
+      this.getActivities(this.courseId!)
     }
   }
 

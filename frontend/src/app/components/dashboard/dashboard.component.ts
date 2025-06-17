@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {RealisedSubject} from "../../model/realised.subject";
 import {AuthService} from "../../services/auth.service";
-import {RealisationService} from "../../services/realisation.service";
+import {CourseService} from "../../services/course.service";
 import {BehaviorSubject, Observable} from "rxjs";
 import {ActivityPage} from "../../model/activity";
 import {ActivityService} from "../../services/activity.service";
@@ -39,7 +39,7 @@ export class DashboardComponent implements OnInit {
   posts$: Observable<PostPage> | undefined
 
   constructor(public authService: AuthService,
-              private realisationService: RealisationService,
+              private courseService: CourseService,
               private activityService: ActivityService,
               private gradeService: GradeService,
               private postService: PostService) {
@@ -47,7 +47,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.authService.getRole() == "STUDENT" || this.authService.getRole() == "TEACHER") {
-      this.subjects$ = this.realisationService.getRealisedSubjects()
+      this.subjects$ = this.courseService.getRealisedSubjects()
 
       this.activityPageNumber$.subscribe(() => {
         this.activities$ = this.activityService.getAllIncomingActivities(this.activityPageNumber$.value)

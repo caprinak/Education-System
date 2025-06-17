@@ -7,7 +7,7 @@ import {ActivityPage} from "../../../model/activity";
 })
 export class IncomingActivitiesComponent implements OnInit {
 
-  @Input() realisationId: number | undefined;
+  @Input() courseId: number | undefined;
   @Input() activityPage: ActivityPage | undefined
 
   @Output() nextPage: EventEmitter<any> = new EventEmitter();

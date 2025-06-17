@@ -11,7 +11,7 @@ export interface Subject {
   updatedAt: Date;
   imageUrl: string
   name: string;
-  activeRealisationsCount: number
+  activeCoursesCount: number
   abbreviation: string;
   archived: boolean;
 }

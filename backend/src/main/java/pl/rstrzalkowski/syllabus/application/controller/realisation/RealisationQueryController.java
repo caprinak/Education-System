@@ -34,7 +34,7 @@ import pl.rstrzalkowski.syllabus.domain.shared.AccessGuard;
 import java.util.List;
 
 @RestController
-@RequestMapping("/realisations")
+@RequestMapping("/courses")
 @RequiredArgsConstructor
 public class RealisationQueryController {
 

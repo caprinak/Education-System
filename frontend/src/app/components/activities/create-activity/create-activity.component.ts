@@ -20,7 +20,7 @@ export class CreateActivityComponent implements OnInit {
   loading = false
   //end loading
 
-  @Input() realisationId: number | undefined
+  @Input() courseId: number | undefined
   @Output() close: EventEmitter<any> = new EventEmitter()
   @Output() success: EventEmitter<any> = new EventEmitter()
 
@@ -44,7 +44,7 @@ export class CreateActivityComponent implements OnInit {
     }
 
     this.loading = true
-    this.activityService.createActivity(this.name, this.description, this.weight, new Date(this.date), this.realisationId).subscribe((result) => {
+    this.activityService.createActivity(this.name, this.description, this.weight, new Date(this.date), this.courseId).subscribe((result) => {
       this.alertService.showAlert('success', 'Activity has been successfully created! Now you can grade students of it.')
       this.success.emit()
     }, error => {

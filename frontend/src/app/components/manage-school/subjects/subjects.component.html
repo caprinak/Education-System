@@ -56,7 +56,7 @@
               Abbreviation
             </th>
             <th *ngIf="!showArchived" class="px-6 py-3 text-center">
-              Active realisations
+              Active courses
             </th>
             <th *ngIf="!showArchived" class="px-6 py-3 text-center">
               Action
@@ -72,7 +72,7 @@
               {{subject.abbreviation}}
             </td>
             <td *ngIf="!showArchived" class="px-6 py-4 text-center">
-              {{subject.activeRealisationsCount}}
+              {{subject.activeCoursesCount}}
             </td>
             <td *ngIf="!showArchived" class="px-6 py-4 text-center flex justify-center space-x-3">
               <button (click)="showEditModal(subject)" class="btn-submit">Edit</button>
@@ -121,7 +121,7 @@
               <h3 class="text-lg font-medium leading-6 text-skin-base" id="modal-title">Archive subject</h3>
               <div class="mt-2">
                 <p class="text-sm text-skin-base">Are you sure you want to archive subject? This action will archive all
-                  the subject realisations. This action can't be undone</p>
+                  the subject courses. This action can't be undone</p>
               </div>
             </div>
           </div>

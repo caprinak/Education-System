@@ -4,14 +4,14 @@ import {UserPage} from "../../../../model/user";
 import {AlertService} from "../../../../services/alert.service";
 import {LevelService} from "../../../../services/level.service";
 import {UserService} from "../../../../services/user.service";
-import {RealisationInfo} from "../../../../model/realisation.info";
-import {RealisationService} from "../../../../services/realisation.service";
+import {CourseInfo} from "../../../../model/course.info";
+import {CourseService} from "../../../../services/course.service";
 
 @Component({
-  selector: 'app-edit-realisation',
-  templateUrl: './edit-realisation.component.html'
+  selector: 'app-edit-course',
+  templateUrl: './edit-course.component.html'
 })
-export class EditRealisationComponent implements OnInit {
+export class EditCourseComponent implements OnInit {
 
   //Data
   year: number = new Date().getFullYear()
@@ -25,19 +25,19 @@ export class EditRealisationComponent implements OnInit {
   loading = false
   //end loading
 
-  @Input() realisation: RealisationInfo | undefined
+  @Input() course: CourseInfo | undefined
   @Output() close: EventEmitter<any> = new EventEmitter()
   @Output() success: EventEmitter<any> = new EventEmitter()
 
   constructor(private alertService: AlertService,
-              private realisationService: RealisationService,
+              private courseService: CourseService,
               private levelService: LevelService,
               private userService: UserService) {
   }
 
   ngOnInit(): void {
-    this.year = this.realisation?.year || new Date().getFullYear()
-    this.teacherId = this.realisation?.teacherId
+    this.year = this.course?.year || new Date().getFullYear()
+    this.teacherId = this.course?.teacherId
   }
 
   @HostListener('document:keydown', ['$event']) onKeydownHandler(event: KeyboardEvent) {
@@ -53,8 +53,8 @@ export class EditRealisationComponent implements OnInit {
     }
 
     this.loading = true
-    this.realisationService.updateRealisation(this.realisation?.id, this.teacherId, this.year).subscribe((result) => {
-      this.alertService.showAlert('success', 'Realisation has been successfully updated!')
+    this.courseService.updateCourse(this.course?.id, this.teacherId, this.year).subscribe((result) => {
+      this.alertService.showAlert('success', 'Course has been successfully updated!')
       this.success.emit()
     }, error => {
       this.alertService.showAlert('danger', 'Something went wrong during updating a class. Make sure form is valid')

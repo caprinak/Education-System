@@ -6,7 +6,7 @@ import {AuthenticationGuard} from "./guards/authentication.guard";
 import {OwnProfileComponent} from "./components/own-profile/own-profile.component";
 import {HomeComponent} from "./components/home/home.component";
 import {SettingsComponent} from "./components/settings/settings.component";
-import {RealisationComponent} from "./components/realisation/realisation.component";
+import {CourseComponent} from "./components/course/course.component";
 import {ForbiddenPageComponent} from "./components/utilities/forbidden-page/forbidden-page.component";
 import {NotFoundPageComponent} from "./components/utilities/not-found-page/not-found-page.component";
 import {GradesComponent} from "./components/grades/grades.component";
@@ -14,7 +14,7 @@ import {ActivitiesComponent} from "./components/activities/activities.component"
 import {StudentGuard} from "./guards/student.guard";
 import {TeacherGuard} from "./guards/teacher.guard";
 import {SubjectsComponent} from "./components/manage-school/subjects/subjects.component";
-import {RealisationsComponent} from "./components/manage-school/realisations/realisations.component";
+import {CoursesComponent} from "./components/manage-school/courses/courses.component";
 import {ClassesComponent} from "./components/manage-school/classes/classes.component";
 import {UsersComponent} from "./components/manage-school/users/users.component";
 import {LevelsComponent} from "./components/manage-school/levels/levels.component";
@@ -61,17 +61,17 @@ const routes: Routes = [
         },
       },
       {
-        path: "realisation/:id",
-        component: RealisationComponent,
+        path: "course/:id",
+        component: CourseComponent,
         canActivate: [AuthenticationGuard],
       },
       {
-        path: "realisation/:id/grades",
+        path: "course/:id/grades",
         component: GradesComponent,
         canActivate: [AuthenticationGuard, StudentGuard]
       },
       {
-        path: "realisation/:id/activities",
+        path: "course/:id/activities",
         component: ActivitiesComponent,
         canActivate: [AuthenticationGuard, TeacherGuard]
       },
@@ -84,11 +84,11 @@ const routes: Routes = [
         },
       },
       {
-        path: "realisations",
-        component: RealisationsComponent,
+        path: "courses",
+        component: CoursesComponent,
         canActivate: [AuthenticationGuard, ManagementGuard],
         data: {
-          title: "Realisations"
+          title: "Courses"
         },
       },
       {

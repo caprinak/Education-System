@@ -13,13 +13,13 @@ import {OwnProfileComponent} from './components/own-profile/own-profile.componen
 import {JwtInterceptor} from "./interceptors/jwt.interceptor";
 import {SettingsComponent} from './components/settings/settings.component';
 import {AlertComponent} from './components/utilities/alert/alert.component';
-import {RealisationComponent} from './components/realisation/realisation.component';
+import {CourseComponent} from './components/course/course.component';
 import {ForbiddenPageComponent} from './components/utilities/forbidden-page/forbidden-page.component';
 import {NotFoundPageComponent} from './components/utilities/not-found-page/not-found-page.component';
 import {LoadingComponent} from './components/utilities/loading/loading.component';
-import {AverageGradeComponent} from './components/realisation/average-grade/average-grade.component';
-import {PostsComponent} from './components/realisation/posts/posts.component';
-import {IncomingActivitiesComponent} from './components/realisation/incoming-activities/incoming-activities.component';
+import {AverageGradeComponent} from './components/course/average-grade/average-grade.component';
+import {PostsComponent} from './components/course/posts/posts.component';
+import {IncomingActivitiesComponent} from './components/course/incoming-activities/incoming-activities.component';
 import {GradesComponent} from "./components/grades/grades.component";
 import {FooterComponent} from './components/utilities/footer/footer.component';
 import {CreatePostComponent} from './components/posts/create-post/create-post.component';
@@ -28,7 +28,7 @@ import {ActivitiesComponent} from "./components/activities/activities.component"
 import {EditActivityComponent} from './components/activities/edit-activity/edit-activity.component';
 import {EditPostComponent} from './components/posts/edit-post/edit-post.component';
 import {GradeStudentsComponent} from './components/activities/grade-students/grade-students.component';
-import {RealisationsComponent} from "./components/manage-school/realisations/realisations.component";
+import {CoursesComponent} from "./components/manage-school/courses/courses.component";
 import {ClassesComponent} from "./components/manage-school/classes/classes.component";
 import {UsersComponent} from "./components/manage-school/users/users.component";
 import {LevelsComponent} from "./components/manage-school/levels/levels.component";
@@ -44,11 +44,11 @@ import {EditClassComponent} from './components/manage-school/classes/edit-class/
 import {GenerateCodeComponent} from './components/manage-school/users/generate-code/generate-code.component';
 import {CodesComponent} from './components/manage-school/users/codes/codes.component';
 import {
-  CreateRealisationComponent
-} from './components/manage-school/realisations/create-realisation/create-realisation.component';
+  CreateCourseComponent
+} from './components/manage-school/courses/create-course/create-course.component';
 import {
-  EditRealisationComponent
-} from './components/manage-school/realisations/edit-realisation/edit-realisation.component';
+  EditCourseComponent
+} from './components/manage-school/courses/edit-course/edit-course.component';
 import {EditStudentsComponent} from './components/manage-school/classes/edit-students/edit-students.component';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {ImageUploadComponent} from './components/image-upload/image-upload.component';
@@ -67,7 +67,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     OwnProfileComponent,
     SettingsComponent,
     AlertComponent,
-    RealisationComponent,
+    CourseComponent,
     ForbiddenPageComponent,
     NotFoundPageComponent,
     LoadingComponent,
@@ -84,7 +84,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     GradeStudentsComponent,
     ManageSchoolSidebarComponent,
     SubjectsComponent,
-    RealisationsComponent,
+    CoursesComponent,
     ClassesComponent,
     UsersComponent,
     LevelsComponent,
@@ -95,8 +95,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     EditClassComponent,
     GenerateCodeComponent,
     CodesComponent,
-    CreateRealisationComponent,
-    EditRealisationComponent,
+    CreateCourseComponent,
+    EditCourseComponent,
     EditStudentsComponent,
     DashboardComponent,
     ImageUploadComponent,

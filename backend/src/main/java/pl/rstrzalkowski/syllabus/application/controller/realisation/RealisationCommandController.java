@@ -18,7 +18,7 @@ import pl.rstrzalkowski.syllabus.application.command.realisation.UpdateRealisati
 import pl.rstrzalkowski.syllabus.application.handler.realisation.RealisationCommandHandler;
 
 @RestController
-@RequestMapping("/realisations")
+@RequestMapping("/courses")
 @RequiredArgsConstructor
 public class RealisationCommandController {
 

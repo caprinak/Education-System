@@ -1,11 +1,11 @@
-export interface RealisationInfoPage {
-  content: RealisationInfo[],
+export interface CourseInfoPage {
+  content: CourseInfo[],
   totalPages: number,
   last: boolean,
   number: number
 }
 
-export interface RealisationInfo {
+export interface CourseInfo {
   id: number
   subjectName: string
   teacherId: number

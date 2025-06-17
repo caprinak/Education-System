@@ -11,7 +11,7 @@ import {AuthService} from "../../../services/auth.service";
 })
 export class PostsComponent implements OnInit {
 
-  @Input() realisationId: number | undefined;
+  @Input() courseId: number | undefined;
 
   @Input() postPage: PostPage | undefined
 

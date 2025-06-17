@@ -3,7 +3,7 @@ import {ThemeService} from "../../services/theme.service";
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
-import {RealisationService} from "../../services/realisation.service";
+import {CourseService} from "../../services/course.service";
 import {RealisedSubject} from "../../model/realised.subject";
 import {Observable} from "rxjs";
 import {UserPage} from "../../model/user";
@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
   constructor(public themeService: ThemeService,
               public authService: AuthService,
               public userService: UserService,
-              private realisationService: RealisationService,
+              private courseService: CourseService,
               private router: Router) {
   }
 
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
     }
 
     if (this.authService.getRole() == "STUDENT" || this.authService.getRole() == "TEACHER")
-      this.realisationService.getRealisedSubjects().subscribe((result) => {
+      this.courseService.getRealisedSubjects().subscribe((result) => {
         this.subjects = result;
       })
   }

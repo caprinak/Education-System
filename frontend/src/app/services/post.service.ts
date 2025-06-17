@@ -11,19 +11,19 @@ export class PostService {
   constructor(private http: HttpClient) {
   }
 
-  getRealisationPosts(realisationId: number | undefined, page: number) {
-    return this.http.get<PostPage>(`${environment.apiUrl}/realisations/${realisationId}/posts?size=3&page=${page}&sort=createdAt,desc`)
+  getCoursePosts(courseId: number | undefined, page: number) {
+    return this.http.get<PostPage>(`${environment.apiUrl}/courses/${courseId}/posts?size=3&page=${page}&sort=createdAt,desc`)
   }
 
   getRecentPosts(page: number | undefined) {
     return this.http.get<PostPage>(`${environment.apiUrl}/posts/recent?size=1&page=${page}&sort=createdAt,desc`)
   }
 
-  createPost(title: string, content: string, realisationId: number | undefined) {
+  createPost(title: string, content: string, courseId: number | undefined) {
     return this.http.post(`${environment.apiUrl}/posts`, {
       title: title,
       content: content,
-      realisationId: realisationId
+      courseId: courseId
     }, {observe: "response"})
   }
 

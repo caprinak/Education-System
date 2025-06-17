@@ -13,12 +13,12 @@ export class GradeService {
   constructor(private http: HttpClient) {
   }
 
-  getAverageGrade(realisationId: number | undefined) {
-    return this.http.get<AverageGrade>(`${environment.apiUrl}/realisations/${realisationId}/average`)
+  getAverageGrade(courseId: number | undefined) {
+    return this.http.get<AverageGrade>(`${environment.apiUrl}/courses/${courseId}/average`)
   }
 
-  getGradesOfRealisation(realisationId: number | undefined, page: number) {
-    return this.http.get<GradePage>(`${environment.apiUrl}/realisations/${realisationId}/grades?size=6&page=${page}&sort=date`)
+  getGradesOfCourse(courseId: number | undefined, page: number) {
+    return this.http.get<GradePage>(`${environment.apiUrl}/courses/${courseId}/grades?size=6&page=${page}&sort=date`)
   }
 
   getGradesOfActivity(activityId: number | undefined) {

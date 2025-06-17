@@ -7,13 +7,13 @@ import {UserService} from "../../../../services/user.service";
 import {ClassPage} from "../../../../model/class";
 import {SubjectPage} from "../../../../model/subject";
 import {SubjectService} from "../../../../services/subject.service";
-import {RealisationService} from "../../../../services/realisation.service";
+import {CourseService} from "../../../../services/course.service";
 
 @Component({
-  selector: 'app-create-realisation',
-  templateUrl: './create-realisation.component.html'
+  selector: 'app-create-course',
+  templateUrl: './create-course.component.html'
 })
-export class CreateRealisationComponent implements OnInit {
+export class CreateCourseComponent implements OnInit {
 
   //Data
   year: number = new Date().getFullYear()
@@ -38,7 +38,7 @@ export class CreateRealisationComponent implements OnInit {
               private classService: ClassService,
               private subjectService: SubjectService,
               private userService: UserService,
-              private realisationService: RealisationService) {
+              private courseService: CourseService) {
   }
 
   ngOnInit(): void {
@@ -57,14 +57,14 @@ export class CreateRealisationComponent implements OnInit {
     }
 
     this.loading = true
-    this.realisationService.createRealisation(this.classId, this.subjectId, this.teacherId, this.year).subscribe((result) => {
-      this.alertService.showAlert('success', 'Realisation has been successfully created!')
+    this.courseService.createCourse(this.classId, this.subjectId, this.teacherId, this.year).subscribe((result) => {
+      this.alertService.showAlert('success', 'Course has been successfully created!')
       this.success.emit()
     }, error => {
       if (error.status === 409) {
         this.alertService.showAlert('danger', 'This class currently realises this subject.')
       } else {
-        this.alertService.showAlert('danger', 'Something went wrong during creating a realisation. Make sure form is valid')
+        this.alertService.showAlert('danger', 'Something went wrong during creating a course. Make sure form is valid')
       }
       this.loading = false
     })

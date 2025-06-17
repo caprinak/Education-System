@@ -18,7 +18,7 @@ export class CreatePostComponent implements OnInit {
   loading = false
   //end loading
 
-  @Input() realisationId: number | undefined
+  @Input() courseId: number | undefined
   @Output() close: EventEmitter<any> = new EventEmitter()
   @Output() success: EventEmitter<any> = new EventEmitter()
 
@@ -42,7 +42,7 @@ export class CreatePostComponent implements OnInit {
     }
 
     this.loading = true
-    this.postService.createPost(this.title, this.content, this.realisationId).subscribe((result) => {
+    this.postService.createPost(this.title, this.content, this.courseId).subscribe((result) => {
       this.alertService.showAlert('success', 'Post has been successfully created!')
       this.success.emit()
     }, error => {

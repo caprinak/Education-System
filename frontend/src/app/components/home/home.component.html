@@ -77,7 +77,7 @@
             <section class="transition duration-300 border-teal-700 border-l-2 rounded-l-md pl-2"
               [ngClass]="subjectsHidden? 'hidden': ''">
               <li *ngFor="let subject of subjects" class="my-px">
-                <a (click)="hideSidebarIfOverlapping()" [routerLink]="'/realisation/' + subject.realisationId"
+                <a (click)="hideSidebarIfOverlapping()" [routerLink]="'/course/' + subject.courseId"
                   routerLinkActive="bg-skin-muted" [routerLinkActiveOptions]="{exact: true}"
                   class="flex flex-row items-center h-9 pr-3 rounded-lg text-skin-base hover:bg-skin-muted">
                   <span *ngIf="authService.getRole() == 'STUDENT'" class="ml-4 truncate"> >
