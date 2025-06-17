@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/syllabus_db
+    username: postgres
+    password: 123456
+
+
+  sql:
+    init:
+      mode: always
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    defer-datasource-initialization: true
+
+  servlet:
+    multipart:
+      max-file-size: 48MB
+      max-request-size: 48MB
+
+server:
+  servlet:
+    context-path: /api
+
+jwt:
+  expiration:
+    time: 3600000
+
+  secret: ${JWT_SECRET:firjegurehg}
