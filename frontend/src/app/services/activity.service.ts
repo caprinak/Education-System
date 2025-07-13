@@ -1,7 +1,9 @@
 import {Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {ActivityPage} from "../model/activity";
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs/internal/observable/throwError';
 
 @Injectable({
   providedIn: 'root'
@@ -23,16 +25,41 @@ export class ActivityService {
     return this.http.get<ActivityPage>(`${environment.apiUrl}/activities/incoming?size=3&page=${page}&sort=date`)
   }
 
+  // createActivity(name: string, description: string, weight: number, date: any, courseId: number | undefined) {
+  //   return this.http.post(`${environment.apiUrl}/activities`, {
+  //     name: name,
+  //     description: description,
+  //     weight: weight,
+  //     date: date,
+  //     courseId: courseId
+  //   }, {observe: "response"})
+  // }
   createActivity(name: string, description: string, weight: number, date: any, courseId: number | undefined) {
-    return this.http.post(`${environment.apiUrl}/activities`, {
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Accept', 'application/json');
+
+    const payload = {
       name: name,
       description: description,
       weight: weight,
-      date: date,
-      courseId: courseId
-    }, {observe: "response"})
-  }
+      date: date instanceof Date ? date.toISOString() : date,
+      realisationId: courseId
+    };
 
+    console.log('Sending request to:', `${environment.apiUrl}/activities`);
+    console.log('Payload:', payload);
+
+    return this.http.post(`${environment.apiUrl}/activities`, payload, {
+      headers: headers,
+      observe: "response"
+    }).pipe(
+      catchError(error => {
+        console.error('API Error:', error);
+        return throwError(() => error);
+      })
+    );
+}
   updateActivity(name: string, description: string, weight: number, date: any, activityId: number | undefined,) {
     return this.http.put(`${environment.apiUrl}/activities/${activityId}`, {
       name: name,

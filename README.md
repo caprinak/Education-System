@@ -1,6 +1,6 @@
 # Syllabus
 
-Syllabus is an online grade book and school management system. Backend is written in Java 17 using Spring Boot 3.0, and
+Sylla is an online grade book and school management system. Backend is written in Java 17 using Spring Boot 3.0, and
 it
 follows DDD and CQRS architecture design. PostgreSQL was chosen as database for the project. JWT standard is used for
 role based

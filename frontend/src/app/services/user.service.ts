@@ -46,7 +46,7 @@ export class UserService {
   }
 
   getActiveUsers(page: number | undefined) {
-    return this.http.get<UserPage>(`${environment.apiUrl}/users?size=10&page=${page}&sort=lastName,firstName`)
+    return this.http.get<UserPage>(`${environment.apiUrl}/users?size=3&page=${page}&sort=lastName,firstName`)
   }
 
   getArchivedUsers(page: number | undefined) {
@@ -54,7 +54,7 @@ export class UserService {
   }
 
   getActiveStudents(page: number | undefined) {
-    return this.http.get<UserPage>(`${environment.apiUrl}/users/students?size=10&page=${page}&sort=lastName,firstName`)
+    return this.http.get<UserPage>(`${environment.apiUrl}/users/students?size=3&page=${page}&sort=lastName,firstName`)
   }
 
   getActiveTeachers(page: number | undefined) {
